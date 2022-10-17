@@ -1,1 +1,1 @@
-export const fetchInfo = async () => {}
+export const useInfo = async () => {}
