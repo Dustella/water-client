@@ -7,6 +7,7 @@ import TheHeader from "./components/TheHeader";
 import LoginPage from "./views/LoginPage";
 import TheFooter from "./components/TheFooter";
 import MyInfo from "./views/MyInfo";
+import Skeleton from "./views/Skeleton";
 
 render(
   () => (
@@ -16,6 +17,7 @@ render(
         <Route path="/code" component={Code} />
         <Route path="/login" component={LoginPage} />
         <Route path="/mine" component={MyInfo} />
+        <Route path="/" component={Skeleton} />
       </Routes>
       <TheFooter />
     </Router>
