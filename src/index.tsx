@@ -6,6 +6,7 @@ import './index.css'
 import TheHeader from "./components/TheHeader";
 import LoginPage from "./views/LoginPage";
 import TheFooter from "./components/TheFooter";
+import MyInfo from "./views/MyInfo";
 
 render(
   () => (
@@ -14,6 +15,7 @@ render(
       <Routes>
         <Route path="/code" component={Code} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/mine" component={MyInfo} />
       </Routes>
       <TheFooter />
     </Router>

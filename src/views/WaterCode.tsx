@@ -17,9 +17,11 @@ export default () => {
   ];
   return (
     <>
-      <For each={codes}>{(code) => <TempCode code={code} />}</For>
-      <div class="flex flex-col">
-        <button class="btn text-3xl text-center m-5 w-50">Get Code</button>
+      <div class="h-4/5 flex flex-col justify-center">
+        <For each={codes}>{(code) => <TempCode code={code} />}</For>
+        <div class="flex flex-col mx-auto">
+          <button class="btn text-3xl text-center m-5 w-50">Get Code</button>
+        </div>
       </div>
     </>
   );
