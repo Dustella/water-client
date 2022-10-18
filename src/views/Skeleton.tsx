@@ -1,6 +1,12 @@
-import '../styles/loading.scss'
+import { useNavigate } from "@solidjs/router";
+import { useLogin } from "../store/login";
+import "../styles/loading.scss";
 
 export default () => {
+  const navigate = useNavigate();
+  useLogin.init().then((isLoggedin) => {
+    navigate("/login");
+  });
   return (
     <>
       <div class="container">

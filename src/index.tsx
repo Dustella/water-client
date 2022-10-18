@@ -1,6 +1,6 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
-import { Router, Route, Link, Routes } from "@solidjs/router";
+import { Router, Route, Link, Routes, useHref } from "@solidjs/router";
 import Code from "./views/WaterCode";
 import './index.css'
 import TheHeader from "./components/TheHeader";
@@ -8,6 +8,10 @@ import LoginPage from "./views/LoginPage";
 import TheFooter from "./components/TheFooter";
 import MyInfo from "./views/MyInfo";
 import Skeleton from "./views/Skeleton";
+import { useLogin } from "./store/login";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://water.dustella.cc";
 
 render(
   () => (
@@ -24,3 +28,6 @@ render(
   ),
   document.getElementById("root") as HTMLElement
 );
+
+// prepare login
+
