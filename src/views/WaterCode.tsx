@@ -22,7 +22,7 @@ export default () => {
         </Suspense>
         <div class="flex flex-col mx-auto">
           <button
-            class="btn text-3xl text-center m-5 w-50"
+            class="btn text-xl text-center m-3 w-50"
             onClick={clickGenCode}
           >
             Get Code
