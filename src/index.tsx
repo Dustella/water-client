@@ -11,10 +11,12 @@ import Skeleton from "./views/Skeleton";
 import { useLogin } from "./store/login";
 import axios from "axios";
 import { Toaster } from "solid-toast";
+import { useInfo } from "./store/info";
 
 axios.defaults.baseURL = "https://water.dustella.cc";
 
 await useLogin.init()
+useInfo.fetchInfo()
 
 render(
   () => (
