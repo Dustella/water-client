@@ -6,7 +6,11 @@ const TempCodeComponent: Component<{ code: TempCode }> = (props) => {
     <>
       <div class="relative h-25 bg-white m-2 rounded-xl p-2 shadow-xl mx-auto">
         <h1 class="text-center text-2xl font-bold m-2">{props.code.code}</h1>
-        <p class="text-xs text-gray-400 text-right m-2">{props.code.createdAt}<br></br>{props.code.expires}</p>
+        <p class="text-xs text-gray-400 text-right m-2">
+          {props.code.createdAt}
+          <br></br>
+          {props.code.expires}
+        </p>
       </div>
     </>
   );

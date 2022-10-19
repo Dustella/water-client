@@ -1,7 +1,9 @@
 import axios from "axios";
+import { untrack } from "solid-js";
 import { createStore } from "solid-js/store";
+import toast from "solid-toast";
 
-const [getLogin, setLogin] = createStore({
+export const [getLogin, setLogin] = createStore({
   token: "",
   authorization: "",
 });
@@ -18,7 +20,7 @@ export const useLogin = {
   },
 
   auth: async () => {
-    const auth = getLogin.token;
+    const auth = untrack(() => getLogin.token);
     const resp = await axios.post("/auth", { auth });
     if (resp.data.success) {
       const { token } = resp.data;
@@ -33,14 +35,13 @@ export const useLogin = {
     if (token) {
       setLogin("token", token);
       const success = await useLogin.auth();
-      if(!success){
-        
+      if (!success) {
+        toast.error("token expired, login again");
+        localStorage.removeItem("token");
+        location.href = "/login";
       }
       return success;
     }
     return false;
   },
-
-  isLoggedIn: () => getLogin.authorization !== "",
-  hasLocalToken: () => getLogin.token !== "",
 };

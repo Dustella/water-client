@@ -1,7 +1,6 @@
 import "../styles/loading.scss";
 
 export default () => {
-
   return (
     <>
       <div class="container">

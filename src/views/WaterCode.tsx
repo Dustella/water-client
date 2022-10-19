@@ -10,7 +10,6 @@ const CodeList = lazy(async () => {
 });
 
 export default () => {
-
   const clickGenCode = async () => {
     await useCode.genCode();
   };

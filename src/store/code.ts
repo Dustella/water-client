@@ -14,7 +14,7 @@ const useCode = {
     console.log(resp.data);
   },
   genCode: async () => {
-    const resp = await axios.post("/user/code/temp");
+    await axios.post("/user/code/temp");
     await useCode.fetchCode();
   },
 };

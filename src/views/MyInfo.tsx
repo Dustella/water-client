@@ -1,8 +1,7 @@
-import type { Component } from "solid-js";
 import { getInfo } from "../store/info";
 
 export default () => {
-  const info = getInfo
+  const info = getInfo;
   return (
     <>
       <div class="h-4/5 flex flex-col justify-center lg:w-1/3 mx-auto">

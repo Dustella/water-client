@@ -4,22 +4,22 @@ import toast, { Toaster } from "solid-toast";
 import { useLogin } from "../store/login";
 
 export default () => {
-  const [name,setName] = createSignal("");
-  const [pass,setPass] = createSignal("");
-  const navigate = useNavigate()
+  const [name, setName] = createSignal("");
+  const [pass, setPass] = createSignal("");
+  const navigate = useNavigate();
   const clickLogin = async () => {
     const success = await useLogin.login(name(), pass());
     if (success) {
-      toast.success("Login Success!")
-      navigate("/code")
-    }else{
-      toast.error("Username or password err")
+      toast.success("Login Success!");
+      navigate("/code");
+    } else {
+      toast.error("Username or password err");
     }
   };
 
   return (
     <>
-    <Toaster />
+      <Toaster />
       <div class="h-4/5 flex flex-col items-center justify-center">
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div class="card-body">
@@ -32,7 +32,7 @@ export default () => {
                 placeholder="email"
                 class="input input-bordered"
                 value={name()}
-                onInput={e=>setName(e.currentTarget.value)}
+                onInput={(e) => setName(e.currentTarget.value)}
               />
             </div>
             <div class="form-control">
@@ -44,7 +44,7 @@ export default () => {
                 placeholder="password"
                 class="input input-bordered"
                 value={pass()}
-                onInput={e=>setPass(e.currentTarget.value)}
+                onInput={(e) => setPass(e.currentTarget.value)}
               />
             </div>
             <div class="form-control mt-6">

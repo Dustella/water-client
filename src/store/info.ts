@@ -10,8 +10,8 @@ export const [getInfo, setInfo] = createStore({
 } as UserInfo);
 
 export const useInfo = {
-    fetchInfo: async () => {
-        const resp = await axios.get("/user/info");
-        setInfo(resp.data)
-    }
+  fetchInfo: async () => {
+    const resp = await axios.get("/user/info");
+    setInfo(resp.data);
+  },
 };

@@ -1,1 +1,1 @@
-export const useRecords = async() => {}
+export const useRecords = async () => {};
