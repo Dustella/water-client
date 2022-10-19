@@ -8,33 +8,39 @@ const [getLogin, setLogin] = createStore({
 
 export const useLogin = {
   login: async (name: string, pass: string) => {
-    const resp = await axios.post("/login", {
-      name,
-      pass,
-    });
-    const token = resp.data;
-    setLogin("token", token);
-    localStorage.setItem("token", token);
+    const resp = await axios.post("/login", { name, pass });
+    if (resp.data.success) {
+      const token = resp.data.token;
+      setLogin("token", token);
+      localStorage.setItem("token", token);
+    }
+    return resp.data.success;
   },
 
   auth: async () => {
-    const oriToken = getLogin.token;
-    const resp = await axios.post("/auth", { oriToken });
-    if (!resp.data.success) {
-      return;
+    const auth = getLogin.token;
+    const resp = await axios.post("/auth", { auth });
+    if (resp.data.success) {
+      const { token } = resp.data;
+      setLogin("authorization", token);
+      axios.defaults.headers.common["Authorization"] = token;
     }
-    const { token } = resp.data;
-    setLogin("authorization", token);
-    axios.defaults.headers.common["Authorization"] = getLogin.authorization;
+    return resp.data.success;
   },
 
   init: async () => {
     const token = localStorage.getItem("token");
     if (token) {
       setLogin("token", token);
-      await useLogin.auth();
-      return true;
+      const success = await useLogin.auth();
+      if(!success){
+        
+      }
+      return success;
     }
     return false;
   },
+
+  isLoggedIn: () => getLogin.authorization !== "",
+  hasLocalToken: () => getLogin.token !== "",
 };

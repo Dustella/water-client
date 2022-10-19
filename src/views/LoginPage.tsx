@@ -1,16 +1,25 @@
+import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
+import toast, { Toaster } from "solid-toast";
 import { useLogin } from "../store/login";
 
 export default () => {
   const [name,setName] = createSignal("");
   const [pass,setPass] = createSignal("");
+  const navigate = useNavigate()
   const clickLogin = async () => {
-    console.log(name(),pass())
-    await useLogin.login(name(), pass());
+    const success = await useLogin.login(name(), pass());
+    if (success) {
+      toast.success("Login Success!")
+      navigate("/code")
+    }else{
+      toast.error("Username or password err")
+    }
   };
 
   return (
     <>
+    <Toaster />
       <div class="h-4/5 flex flex-col items-center justify-center">
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div class="card-body">
@@ -31,7 +40,7 @@ export default () => {
                 <span class="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
                 class="input input-bordered"
                 value={pass()}

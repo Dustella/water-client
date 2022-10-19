@@ -12,3 +12,9 @@ html,body, #root{
 body{
     padding: 0.75em;
 }
+
+*{
+    transition: all;
+    
+    transition-duration: 1s;
+}

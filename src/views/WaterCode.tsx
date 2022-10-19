@@ -1,26 +1,32 @@
-import type { Component } from "solid-js";
+import { Component, lazy, Suspense } from "solid-js";
 import { For } from "solid-js";
+import LoadingAnimation from "../components/LoadingAnimation";
 import TempCode from "../components/TempCode";
+import useCode from "../store/code";
+
+const CodeList = lazy(async () => {
+  await useCode.fetchCode();
+  return import("../components/CodeList");
+});
 
 export default () => {
-  const codes = [
-    {
-      code: "1234",
-      expires: "2021-09-01T00:00:00.000Z",
-      createdAt: "2021-09-01T00:00:00.000Z",
-    },
-    {
-      code: "5678",
-      expires: "2021-09-01T00:00:00.000Z",
-      createdAt: "2021-09-01T00:00:00.000Z",
-    },
-  ];
+
+  const clickGenCode = async () => {
+    await useCode.genCode();
+  };
   return (
     <>
       <div class="h-4/5 flex flex-col justify-center">
-        <For each={codes}>{(code) => <TempCode code={code} />}</For>
+        <Suspense fallback={LoadingAnimation}>
+          <CodeList />
+        </Suspense>
         <div class="flex flex-col mx-auto">
-          <button class="btn text-3xl text-center m-5 w-50">Get Code</button>
+          <button
+            class="btn text-3xl text-center m-5 w-50"
+            onClick={clickGenCode}
+          >
+            Get Code
+          </button>
         </div>
       </div>
     </>
