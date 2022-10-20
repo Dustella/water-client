@@ -1,12 +1,12 @@
 import { For } from "solid-js";
-import { getCode } from "../store/code";
+import { useTempCode } from "../store/code";
 import TempCode from "./TempCode";
 
 export default () => {
-  const codes = getCode.tmpCode;
+  const codes = useTempCode;
   return (
     <>
-      <For each={codes}>{(code) => <TempCode code={code} />}</For>
+      <For each={codes()}>{(code) => <TempCode code={code} />}</For>
     </>
   );
 };

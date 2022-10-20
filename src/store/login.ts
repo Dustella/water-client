@@ -1,7 +1,7 @@
-import axios from "axios";
 import { untrack } from "solid-js";
 import { createStore } from "solid-js/store";
 import toast from "solid-toast";
+import requests from "../requests";
 
 export const [getLogin, setLogin] = createStore({
   token: "",
@@ -10,7 +10,7 @@ export const [getLogin, setLogin] = createStore({
 
 export const useLogin = {
   login: async (name: string, pass: string) => {
-    const resp = await axios.post("/login", { name, pass });
+    const resp = await requests().post("/login", { name, pass });
     if (resp.data.success) {
       const token = resp.data.token;
       setLogin("token", token);
@@ -21,11 +21,11 @@ export const useLogin = {
 
   auth: async () => {
     const auth = untrack(() => getLogin.token);
-    const resp = await axios.post("/auth", { auth });
+    const resp = await requests().post("/auth", { auth });
     if (resp.data.success) {
       const { token } = resp.data;
       setLogin("authorization", token);
-      axios.defaults.headers.common["Authorization"] = token;
+      localStorage.setItem("authorization", token);
     }
     return resp.data.success;
   },

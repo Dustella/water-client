@@ -1,5 +1,5 @@
-import axios from "axios";
 import { createStore } from "solid-js/store";
+import requests from "../requests";
 import { UserInfo } from "../types/Code";
 
 export const [getInfo, setInfo] = createStore({
@@ -11,7 +11,7 @@ export const [getInfo, setInfo] = createStore({
 
 export const useInfo = {
   fetchInfo: async () => {
-    const resp = await axios.get("/user/info");
+    const resp = await requests().get("/user/info");
     setInfo(resp.data);
   },
 };

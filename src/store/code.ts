@@ -1,22 +1,13 @@
-import axios from "axios";
-import { createStore } from "solid-js/store";
-import { PermenantCode, TempCode } from "../types/Code";
+import { createResource } from "solid-js";
+import requests from "../requests";
+import { TempCode } from "../types/Code";
 
-export const [getCode, setCode] = createStore({
-  tmpCode: [] as TempCode[],
-  permenantCode: {} as PermenantCode,
-});
+const [useTempCode, { refetch: refetchTempCode }] = createResource<TempCode[]>(
+  async () => (await requests().get("/user/code/temp")).data
+);
 
-const useCode = {
-  fetchCode: async () => {
-    const resp = await axios.get("/user/code/temp");
-    setCode("tmpCode", resp.data);
-    console.log(resp.data);
-  },
-  genCode: async () => {
-    await axios.post("/user/code/temp");
-    await useCode.fetchCode();
-  },
-};
+const genTempCode = () => requests().post("/user/code/temp");
 
-export default useCode;
+// export const usePermenantCode = createResource<PermenantCode>(
+
+export { useTempCode, refetchTempCode, genTempCode };

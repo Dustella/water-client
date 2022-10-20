@@ -1,6 +1,7 @@
-import { getInfo } from "../store/info";
+import { getInfo, useInfo } from "../store/info";
 
 export default () => {
+  useInfo.fetchInfo();
   const info = getInfo;
   return (
     <>
