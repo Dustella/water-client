@@ -8,7 +8,10 @@ export default () => {
     <>
       <div class="navbar bg-base-100 rounded-xl shadow-2xl">
         <div class="flex-1">
-          <A class="btn btn-ghost normal-case text-xl" href="/">
+          <A
+            class="btn dark:text-yellow-50 btn-ghost normal-case text-xl"
+            href="/"
+          >
             Water
           </A>
         </div>

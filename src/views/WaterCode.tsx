@@ -22,7 +22,7 @@ export default () => {
         </Switch>
         <div class="flex flex-col mx-auto">
           <button
-            class="btn text-xl text-center m-3 w-50"
+            class="btn dark:bg-slate-500 dark:text-yellow-50 text-xl text-center m-3 w-50"
             onClick={clickGenCode}
           >
             Get Code

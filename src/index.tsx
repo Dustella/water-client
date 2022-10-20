@@ -2,7 +2,7 @@
 import { render } from "solid-js/web";
 import { Router, Route, Routes } from "@solidjs/router";
 import Code from "./views/WaterCode";
-import "./index.css";
+import "./index.scss";
 import TheHeader from "./components/TheHeader";
 import LoginPage from "./views/LoginPage";
 import TheFooter from "./components/TheFooter";
