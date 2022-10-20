@@ -12,7 +12,7 @@ export const useLogin = {
   login: async (name: string, pass: string) => {
     const resp = await requests().post("/login", { name, pass });
     if (resp.data.success) {
-      const token = resp.data.token;
+      const token = resp.data.message;
       setLogin("token", token);
       localStorage.setItem("token", token);
     }

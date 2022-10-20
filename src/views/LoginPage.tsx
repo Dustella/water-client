@@ -12,6 +12,7 @@ export default () => {
     if (success) {
       toast.success("Login Success!");
       navigate("/code");
+      useLogin.init();
     } else {
       toast.error("Username or password err");
     }
